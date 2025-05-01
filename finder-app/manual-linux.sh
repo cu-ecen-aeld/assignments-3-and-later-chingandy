@@ -104,9 +104,9 @@ cp ${SYSROOT}/lib64/libc.so.6 lib64
 
 # TODO: Make device nodes
 echo "Making device nodes"
-sudo mknod -m 666 /dev/null c 1 3
-sudo mknod -m 666 /dev/console c 5 1
-
+sudo mknod -m 666 ${OUTDIR}/rootfs/dev/null c 1 3
+sudo mknod -m 666 ${OUTDIR}/rootfs/dev/console c 5 1
+echo "Device nodes created"
 # TODO: Clean and build the writer utility
 make -C ${FINDER_APP_DIR} clean 
 make -C ${FINDER_APP_DIR} CROSS_COMPILE=${CROSS_COMPILE}
