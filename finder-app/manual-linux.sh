@@ -66,7 +66,7 @@ fi
 # TODO: Create necessary base directories
 echo "Creating necessary base directories in ${OUTDIR}/rootfs"
 mkdir -p ${OUTDIR}/rootfs
-mkdir -p ${OUTDIR}/rootfs/{bin,dev,etc,home,lib,lib64,proc,sbin,sys,tmp,usr,var}
+mkdir -p ${OUTDIR}/rootfs/{bin,dev,etc,home,lib,lib64,proc,sbin,sys,tmp,usr,var,conf}
 mkdir -p ${OUTDIR}/rootfs/usr/{bin,lib,sbin}
 mkdir -p ${OUTDIR}/rootfs/var/log
 
@@ -78,6 +78,7 @@ git clone git://busybox.net/busybox.git
     cd busybox
     git checkout ${BUSYBOX_VERSION}
     # TODO:  Configure busybox
+    
 else
     cd busybox
 fi
@@ -88,6 +89,7 @@ make distclean
 make defconfig
 make -j10 ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make -j10 CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
+sudo chown -R root:root ${OUTDIR}/busybox
 
 echo "Library dependencies"
 cd ${OUTDIR}/rootfs
