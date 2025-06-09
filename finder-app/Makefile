@@ -2,6 +2,8 @@
 CC = $(CROSS_COMPILE)gcc
 CFLAGS = -Wall -Wextra -o2 -g
 
+all: writer
+
 writer: writer.c
 	$(CC) $(CFLAG) -o writer  writer.c
 
